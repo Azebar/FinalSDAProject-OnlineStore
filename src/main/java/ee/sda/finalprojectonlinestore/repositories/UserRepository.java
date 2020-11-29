@@ -1,4 +1,7 @@
 package ee.sda.finalprojectonlinestore.repositories;
 
-public class UserRepository {
+import ee.sda.finalprojectonlinestore.entities.User;
+import org.springframework.data.repository.CrudRepository;
+
+public interface UserRepository extends CrudRepository<User, Long> {
 }

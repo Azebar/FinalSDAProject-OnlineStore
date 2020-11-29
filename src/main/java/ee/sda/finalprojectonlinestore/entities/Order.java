@@ -1,7 +1,9 @@
 package ee.sda.finalprojectonlinestore.entities;
 
 import ee.sda.finalprojectonlinestore.enums.OrderStatus;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -11,15 +13,16 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Order {
 
-    @Id
     @GeneratedValue
+    @Id
     Long id;
-    Integer totalCost;
     String deliveryAddress;
     Date dateOfOrder;
-    @OneToMany(mappedBy = "order")
+    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
     List<OrderLine> orderLines;
     @OneToOne
     @JoinColumn(name = "user_id")

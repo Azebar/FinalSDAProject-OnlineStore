@@ -1,7 +1,9 @@
 package ee.sda.finalprojectonlinestore.entities;
 
 import ee.sda.finalprojectonlinestore.enums.OrderStatus;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
 import java.util.List;
@@ -9,6 +11,8 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class User {
 
     @GeneratedValue
@@ -24,5 +28,4 @@ public class User {
     String preferredMessagingChannel;
     @OneToOne(mappedBy = "user")
     Order order;
-    Enum orderStatus;
 }

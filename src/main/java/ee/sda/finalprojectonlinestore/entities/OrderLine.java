@@ -1,6 +1,8 @@
 package ee.sda.finalprojectonlinestore.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
@@ -8,10 +10,12 @@ import javax.persistence.*;
 @Entity
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class OrderLine {
 
-    @Id
     @GeneratedValue
+    @Id
     Long id;
     @OneToOne
     @JoinColumn(name = "product_id")
@@ -20,4 +24,5 @@ public class OrderLine {
     @ManyToOne
     @JoinColumn(name = "order_id")
     Order order;
+
 }

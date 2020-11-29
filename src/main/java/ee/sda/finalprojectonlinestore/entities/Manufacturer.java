@@ -3,10 +3,7 @@ package ee.sda.finalprojectonlinestore.entities;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -18,6 +15,6 @@ public class Manufacturer {
     @Id
     Long id;
     String name;
-    @OneToMany(mappedBy = "manufacturer")
+    @OneToMany(mappedBy = "manufacturer", fetch = FetchType.EAGER)
     List<Product> products;
 }

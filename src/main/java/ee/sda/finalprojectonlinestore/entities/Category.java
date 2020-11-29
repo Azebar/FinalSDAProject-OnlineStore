@@ -15,6 +15,6 @@ public class Category {
     @Id
     Long id;
     String name;
-    @OneToMany(mappedBy = "category")
+    @OneToMany(mappedBy = "category", fetch = FetchType.EAGER)
     List<Product> products;
 }
