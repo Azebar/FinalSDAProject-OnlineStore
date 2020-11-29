@@ -18,6 +18,6 @@ public class Manufacturer {
     @Id
     Long id;
     String name;
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "manufacturer")
     List<Product> products;
 }

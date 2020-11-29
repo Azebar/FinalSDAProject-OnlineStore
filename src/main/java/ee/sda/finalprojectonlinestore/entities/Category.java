@@ -3,10 +3,8 @@ package ee.sda.finalprojectonlinestore.entities;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Setter
@@ -17,6 +15,6 @@ public class Category {
     @Id
     Long id;
     String name;
-    @OneToOne(mappedBy = "category")
-    Product product;
+    @OneToMany(mappedBy = "category")
+    List<Product> products;
 }

@@ -1,6 +1,5 @@
 package ee.sda.finalprojectonlinestore.entities;
 
-import ee.sda.finalprojectonlinestore.enums.ProductType;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -17,16 +16,11 @@ public class Product {
     String title;
     String description;
     String thumbnail;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "category_id")
     Category category;
     Integer price;
-    @Enumerated
-    ProductType productType;
     @ManyToOne
     @JoinColumn(name = "manufacturer_id")
     Manufacturer manufacturer;
-    @OneToOne(mappedBy = "product")
-    OrderLine orderLine;
-
 }
