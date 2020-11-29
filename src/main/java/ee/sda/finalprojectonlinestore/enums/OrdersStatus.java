@@ -1,6 +1,6 @@
 package ee.sda.finalprojectonlinestore.enums;
 
-public enum OrderStatus {
+public enum OrdersStatus {
 
     SUBMITTED, IN_PROGRESS, SHIPPED, CANCELED, COMPLETED;
 }

@@ -2,6 +2,7 @@ package ee.sda.finalprojectonlinestore.entities;
 
 import lombok.Getter;
 import lombok.Setter;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -21,6 +22,4 @@ public class Role {
             inverseJoinColumns = @JoinColumn(name = "user_id")
     )
     List<User> users;
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
-    List<Privilege> privileges;
 }

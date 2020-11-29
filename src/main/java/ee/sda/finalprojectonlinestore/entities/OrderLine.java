@@ -22,7 +22,7 @@ public class OrderLine {
     Product product;
     Integer quantityOfProducts;
     @ManyToOne
-    @JoinColumn(name = "order_id")
-    Order order;
+    @JoinColumn(name = "orders_id")
+    Orders orders;
 
 }

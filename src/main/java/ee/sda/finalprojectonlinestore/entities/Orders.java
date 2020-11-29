@@ -1,6 +1,6 @@
 package ee.sda.finalprojectonlinestore.entities;
 
-import ee.sda.finalprojectonlinestore.enums.OrderStatus;
+import ee.sda.finalprojectonlinestore.enums.OrdersStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,18 +15,18 @@ import java.util.List;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Order {
+public class Orders {
 
     @GeneratedValue
     @Id
     Long id;
     String deliveryAddress;
-    Date dateOfOrder;
-    @OneToMany(mappedBy = "order", fetch = FetchType.EAGER)
+    Date orderDate;
+    @OneToMany(mappedBy = "orders")
     List<OrderLine> orderLines;
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "user_id")
     User user;
     @Enumerated
-    OrderStatus status;
+    OrdersStatus status;
 }

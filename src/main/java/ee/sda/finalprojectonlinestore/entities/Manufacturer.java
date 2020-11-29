@@ -15,6 +15,6 @@ public class Manufacturer {
     @Id
     Long id;
     String name;
-    @OneToMany(mappedBy = "manufacturer", fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "manufacturer")
     List<Product> products;
 }
