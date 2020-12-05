@@ -4,10 +4,13 @@ package ee.sda.finalprojectonlinestore.configurations;
 import ee.sda.finalprojectonlinestore.entities.User;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 @RequiredArgsConstructor
 public class OnlineStoreUserDetails implements UserDetails {
@@ -16,7 +19,12 @@ public class OnlineStoreUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+
+        Set<GrantedAuthority> roles = new HashSet<>();
+        user.getRoles().stream().forEach(role -> {
+            roles.add(new SimpleGrantedAuthority(role.getName()));
+        });
+        return roles;
     }
 
     @Override
