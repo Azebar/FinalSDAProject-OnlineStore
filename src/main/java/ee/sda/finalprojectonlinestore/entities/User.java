@@ -19,7 +19,7 @@ public class User {
     @Id
     Long id;
     String username;
-    String firsName;
+    String firstName;
     String lastName;
     String password;
     String address;
@@ -29,4 +29,5 @@ public class User {
     List<Orders> ordersList;
     @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER)
     List<Role> roles;
+
 }

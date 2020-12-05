@@ -6,12 +6,22 @@
 <body>
 <h1>Register page</h1>
 <form th:action="@{/register}" th:object="${user}" method="post">
-    <label for="username">Username</label>:
+    <label for="firstName">First name</label>:
+    <input type="text" id="firstName" name="firstName"/> <br />
+    <label for="lastName">Last name</label>:
+    <input type="text" id="lastName" name="lastName"/> <br />
+    <label for="username">Username(email address)</label>:
     <input type="text" id="username" name="username"/> <br />
     <label for="password">Password</label>:
     <input type="password" id="password" name="password" /> <br />
-    <label for="email">Email</label>:
-    <input type="text" id="email" name="email" /> <br />
+    <label for="address">Address</label>:
+    <input type="text" id="address" name="address" /> <br />
+    <div>Please select your preferred contact method:</div>
+    <label for="preferredMessagingChannel">Email</label>
+    <input type="radio" id="preferredMessagingChannel" name="preferredMessagingChannel" value="by email">
+    <label for="preferredMessagingChannel1">Mail</label>
+    <input type="radio" id="preferredMessagingChannel1" name="preferredMessagingChannel" value="by mail"> <br/>
+    <br/>
     <input type="submit" value="Create" />
 </form>
 </body>
