@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Manufacturer</title>
+</head>
+<body>
+<form th:action="@{/admin-panel/save-manufacturer}" th:object="${manufacturer}" method="post">
+    <input type="hidden" name="id" th:value="${manufacturer.id}">
+    <input type="text" name="name" th:value="${manufacturer.name}">
+    <input type="submit">
+</form>
+</body>
+</html>

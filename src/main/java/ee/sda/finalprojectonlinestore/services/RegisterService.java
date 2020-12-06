@@ -9,6 +9,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -26,13 +27,13 @@ public class RegisterService {
     public User createUser(User user) {
         user.setCreated(new Date());
         user.setPassword(encoder.encode(user.getPassword()));
-        List<Role> roles = roleRepository.findByName("ROLE_USER");
-        user.setRoles(roles);
-        List<User> users = roles.get(0).getUsers();
+        Role role = roleRepository.findFirstByName("ROLE_USER");
+        user.setRoles(Arrays.asList(role));
+        List<User> users = role.getUsers();
         users.add(user);
         user = userRepository.save(user);
-        roles.get(0).setUsers(users);
-        roleRepository.save(roles.get(0));
+        role.setUsers(users);
+        roleRepository.save(role);
 
         return user;
     }

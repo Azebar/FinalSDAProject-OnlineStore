@@ -4,13 +4,30 @@
     <title>Manufacturer creation and assigment</title>
 </head>
 <body>
-<h1>Manufacturer creation and assigment</h1>
-<form th:action="@{/create-manufacturer}" th:object="${manufacturer}" method="post">
+<h1>Manufacturer creation</h1>
+<form th:action="@{/admin-panel/save-manufacturer}" th:object="${manufacturer}" method="post">
     <label for="name">Manufacturer name</label>:
     <input type="text" id="name" name="name"/> <br />
     <input type="submit" value="Create" />
 </form>
 <br/><br/>
-
+<table>
+    <thead>
+    <tr>
+        <th>Manufacturer</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="manufacturer : ${manufacturers}">
+        <td th:text="${manufacturer.name}"></td>
+        <td><button th:onclick="|window.location.href='@{/admin-panel/edit-manufacturer/{id}(id=${manufacturer.id})}'|">Edit</button></td>
+        <td><button th:onclick="|window.location.href='@{/admin-panel/delete-manufacturer/{id}(id=${manufacturer.id})}'|">Delete</button></td>
+    </tr>
+    </tbody>
+</table>
+<br/><br/>
+<button th:onclick="window.location.href = '/admin-panel'">Back to admin tools</button>
 </body>
 </html>

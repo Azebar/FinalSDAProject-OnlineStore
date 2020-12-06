@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Subcategory</title>
+</head>
+<body>
+<form th:action="@{/admin-panel/save-subcategory/{id}(id=${category.getParent().getId()})}" th:object="${category}" method="post">
+    <input type="hidden" name="id" th:value="${category.id}">
+    <input type="text" name="name" th:value="${category.name}">
+    <input type="submit">
+</form>
+</body>
+</html>

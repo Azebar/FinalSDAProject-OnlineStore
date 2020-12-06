@@ -17,26 +17,23 @@ public class LoginController {
 
     @GetMapping("/login")
     String login(HttpServletRequest request) {
-        if (request.isUserInRole("ROLE_ADMIN")) {
-            return "redirect:/admin-panel";
-        }
-        if (request.isUserInRole("ROLE_USER")) {
-            return "redirect:/user-panel";
-        }
-        return "login";
+        return redirectToPanel(request, false);
     }
 
     @GetMapping("/")
     String loginHome(HttpServletRequest request) {
+        return redirectToPanel(request, true);
+    }
+
+    String redirectToPanel(HttpServletRequest request, boolean home) {
         if (request.isUserInRole("ROLE_ADMIN")) {
             return "redirect:/admin-panel";
         }
         if (request.isUserInRole("ROLE_USER")) {
             return "redirect:/user-panel";
         }
-        return "login";
+        return home ? "home" : "login";
     }
-
 
     @GetMapping("/logout")
     public String logout(HttpServletRequest request, HttpServletResponse response) {

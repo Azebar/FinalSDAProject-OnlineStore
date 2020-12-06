@@ -1,5 +1,6 @@
 package ee.sda.finalprojectonlinestore.controllers;
 
+import ee.sda.finalprojectonlinestore.entities.Category;
 import ee.sda.finalprojectonlinestore.entities.Manufacturer;
 import ee.sda.finalprojectonlinestore.entities.Product;
 import ee.sda.finalprojectonlinestore.services.ManufacturerService;
@@ -8,10 +9,10 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
+@RequestMapping("/admin-panel")
 @RequiredArgsConstructor
 @Controller
 public class ManufacturerController {
@@ -20,13 +21,26 @@ public class ManufacturerController {
     final ManufacturerService manufacturerService;
 
     @GetMapping("/create-manufacturer")
-    String createManufacturer() {
+    String createManufacturer(Model model) {
+        model.addAttribute("manufacturers", manufacturerService.getAllManufacturers());
         return "create-manufacturer";
     }
 
-    @PostMapping("/create-manufacturer")
-    String createManufacturer(@ModelAttribute Manufacturer manufacturer, Model model) {
-        model.addAttribute("manufacturer", manufacturerService.save(manufacturer));
-        return "redirect:/create-manufacturer";
+    @PostMapping("/save-manufacturer")
+    ModelAndView saveManufacturer(@ModelAttribute Manufacturer manufacturer) {
+        manufacturerService.save(manufacturer);
+        return new ModelAndView("redirect:/admin-panel/create-manufacturer");
+    }
+
+    @GetMapping("/edit-manufacturer/{manufacturerId}")
+    String editManufacturer(@PathVariable String manufacturerId, Model model) {
+        model.addAttribute(manufacturerService.getManufacturerById(manufacturerId));
+        return "edit-manufacturer";
+    }
+
+    @GetMapping("/delete-manufacturer/{manufacturerId}")
+    ModelAndView deleteManufacturer(@PathVariable String manufacturerId) {
+        manufacturerService.deleteManufacturer(manufacturerId);
+        return new ModelAndView("redirect:/admin-panel/create-manufacturer");
     }
 }

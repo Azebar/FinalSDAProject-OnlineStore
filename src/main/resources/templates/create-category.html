@@ -5,12 +5,31 @@
 </head>
 <body>
 <h1>Category creation and assigment</h1>
-<form th:action="@{/create-category}" th:object="${category}" method="post">
+<form th:action="@{/admin-panel/save-category}" th:object="${category}" method="post">
     <label for="name">Category name</label>:
     <input type="text" id="name" name="name"/> <br />
     <input type="submit" value="Create" />
 </form>
 <br/><br/>
-
+<table>
+    <thead>
+    <tr>
+        <th>Category</th>
+        <th>Add sub-category</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="category : ${categories}">
+        <td th:text="${category.name}"></td>
+        <td><button th:onclick="|window.location.href='@{/admin-panel/add-subcategory/{id}(id=${category.id})}'|">Add</button></td>
+        <td><button th:onclick="|window.location.href='@{/admin-panel/edit-category/{id}(id=${category.id})}'|">Edit</button></td>
+        <td><button th:onclick="|window.location.href='@{/admin-panel/delete-category/{id}(id=${category.id})}'|">Delete</button></td>
+    </tr>
+    </tbody>
+</table>
+<br/><br/>
+<button th:onclick="window.location.href = '/admin-panel'">Back to admin tools</button>
 </body>
 </html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Subcategory creation.</title>
+</head>
+<body>
+<h1><span th:text="'Create subcategory for ' + ${category.name}"></span></h1>
+<form th:action="@{/admin-panel/save-subcategory/{id}(id=${category.id})}" th:object="${category}" method="post">
+    <label for="name">Category name</label>:
+    <input type="text" id="name" name="name"/>
+    <br />
+    <input type="submit" value="Create" />
+</form>
+<br/><br/>
+<table>
+    <thead>
+    <tr>
+        <th>Category</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="categoryFromParent : ${categoriesFromParent}">
+        <td th:text="${categoryFromParent.name}"></td>
+        <td><button th:onclick="|window.location.href='@{/admin-panel/edit-subcategory/{id}(id=${categoryFromParent.id})}'|">
+            Edit</button></td>
+        <td><button th:onclick="|window.location.href='@{/admin-panel/delete-subcategory/{id}(id=${categoryFromParent.id})}'|">
+            Delete</button></td>
+    </tr>
+    </tbody>
+</table>
+<br/><br/>
+<button th:onclick="window.location.href = '/admin-panel/create-category'">Back to category tools</button>
+</body>
+</html>

@@ -15,10 +15,9 @@ public class Category {
     @Id
     Long id;
     String name;
-    @ManyToOne
+    @OneToOne
+    @JoinColumn(name = "parent_id")
     Category parent;
-    @OneToMany(mappedBy = "parent", orphanRemoval = true)
-    List<Category> parents;
     @OneToMany(mappedBy = "category")
     List<Product> products;
 }
