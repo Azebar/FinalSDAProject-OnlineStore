@@ -2,15 +2,15 @@ package ee.sda.finalprojectonlinestore.controllers;
 
 
 import ee.sda.finalprojectonlinestore.entities.Product;
+import ee.sda.finalprojectonlinestore.services.CategoryService;
+import ee.sda.finalprojectonlinestore.services.ManufacturerService;
 import ee.sda.finalprojectonlinestore.services.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 @RequestMapping("/admin-panel")
 @RequiredArgsConstructor
@@ -20,14 +20,37 @@ public class ProductController {
     @Autowired
     final ProductService productService;
 
+    @Autowired
+    CategoryService categoryService;
+
+    @Autowired
+    ManufacturerService manufacturerService;
+
     @GetMapping("/create-product")
-    String createProduct() {
+    String createProduct(Model model) {
+        model.addAttribute("categories", categoryService.getAllCategoriesWithoutParents());
+        model.addAttribute("manufacturers", manufacturerService.getAllManufacturers());
+        model.addAttribute("products", productService.getAllProducts());
         return "create-product";
     }
 
-    @PostMapping("/create-product")
-    String createProduct(@ModelAttribute Product product, Model model) {
-        model.addAttribute("category", productService.save(product));
-        return "redirect:/create-product";
+    @PostMapping("/save-product")
+    ModelAndView saveProduct(@ModelAttribute Product product, Model model) {
+        model.addAttribute("product", productService.save(product));
+        return new ModelAndView("redirect:/admin-panel/create-product");
+    }
+
+    @GetMapping("/edit-product/{productId}")
+    String editProduct(@PathVariable String productId, Model model) {
+        model.addAttribute(productService.getProductById(productId));
+        model.addAttribute("categories", categoryService.getAllCategoriesWithoutParents());
+        model.addAttribute("manufacturers", manufacturerService.getAllManufacturers());
+        return "edit-product";
+    }
+
+    @GetMapping("/delete-product/{productId}")
+    ModelAndView deleteProduct(@PathVariable String productId) {
+        productService.deleteProduct(productId);
+        return new ModelAndView("redirect:/admin-panel/create-product");
     }
 }

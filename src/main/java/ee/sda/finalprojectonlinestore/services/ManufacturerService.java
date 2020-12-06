@@ -1,6 +1,5 @@
 package ee.sda.finalprojectonlinestore.services;
 
-import ee.sda.finalprojectonlinestore.entities.Category;
 import ee.sda.finalprojectonlinestore.entities.Manufacturer;
 import ee.sda.finalprojectonlinestore.repositories.ManufacturerRepository;
 import lombok.RequiredArgsConstructor;
