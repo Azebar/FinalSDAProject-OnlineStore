@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home</title>
+</head>
+<body>
+<h1>Welcome to our online store!</h1>
+<br/>
+<button th:onclick="|window.location.href='@{/login}'|">Login</button>
+<br/><br/><br/><br/>
+<table>
+    <thead>
+    <tr>
+        <th>Product</th>
+        <th>Description</th>
+        <th>Thumbnail</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Manufacturer</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="prod : ${products}">
+        <td th:text="${prod.title}"></td>
+        <td th:text="${prod.description}"></td>
+        <td><img th:src="${prod.thumbnail}" width="150" align="middle"></td>
+        <td th:text="${prod.category.name}"></td>
+        <td th:text="${prod.price}"></td>
+        <td th:text="${prod.manufacturer.name}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

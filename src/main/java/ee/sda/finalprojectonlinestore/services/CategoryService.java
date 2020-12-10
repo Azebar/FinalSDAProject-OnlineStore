@@ -43,6 +43,11 @@ public class CategoryService {
         categoryRepository.findByParentId(Long.valueOf(id)).forEach(categoriesFromParent::add);
         return categoriesFromParent;
     }
+    public List<Category> getAllCategoriesFromParent(Category category) {
+        List<Category> categoriesFromParent = new ArrayList<>();
+        categoryRepository.findByParent(category).forEach(categoriesFromParent::add);
+        return categoriesFromParent;
+    }
 
     public List<Category> getAllCategoriesWithoutParents() {
         List<Category> categoryList = new ArrayList<>();

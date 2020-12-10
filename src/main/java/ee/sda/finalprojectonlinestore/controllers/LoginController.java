@@ -1,6 +1,8 @@
 package ee.sda.finalprojectonlinestore.controllers;
 
+import ee.sda.finalprojectonlinestore.services.ProductService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -15,13 +17,17 @@ import javax.servlet.http.HttpServletResponse;
 @Controller
 public class LoginController {
 
+    @Autowired
+    ProductService productService;
+
     @GetMapping("/login")
     String login(HttpServletRequest request) {
         return redirectToPanel(request, false);
     }
 
     @GetMapping("/")
-    String loginHome(HttpServletRequest request) {
+    String loginHome(HttpServletRequest request, Model model) {
+        model.addAttribute("products", productService.getAllProducts());
         return redirectToPanel(request, true);
     }
 
@@ -39,6 +45,6 @@ public class LoginController {
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         new SecurityContextLogoutHandler().logout(request, response, authentication);
-        return "redirect:/login";
+        return "redirect:/";
     }
 }

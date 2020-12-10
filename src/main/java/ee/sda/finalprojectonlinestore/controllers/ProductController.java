@@ -1,6 +1,7 @@
 package ee.sda.finalprojectonlinestore.controllers;
 
 
+import ee.sda.finalprojectonlinestore.entities.Category;
 import ee.sda.finalprojectonlinestore.entities.Product;
 import ee.sda.finalprojectonlinestore.services.CategoryService;
 import ee.sda.finalprojectonlinestore.services.ManufacturerService;
@@ -28,10 +29,23 @@ public class ProductController {
 
     @GetMapping("/create-product")
     String createProduct(Model model) {
+        model.addAttribute("product", new Product());
         model.addAttribute("categories", categoryService.getAllCategoriesWithoutParents());
         model.addAttribute("manufacturers", manufacturerService.getAllManufacturers());
         model.addAttribute("products", productService.getAllProducts());
         return "create-product";
+    }
+
+    @GetMapping("/create-product/{categoryId}")
+    String getCategoriesById(Model model, @PathVariable String categoryId) {
+        model.addAttribute("resultCategories", categoryService.getAllCategoriesFromParent(categoryId));
+        return "create-product :: category";
+    }
+
+    @GetMapping("/edit-product/{productId}/{categoryId}")
+    String editCategoriesById(Model model, @PathVariable String categoryId) {
+        model.addAttribute("resultCategories", categoryService.getAllCategoriesFromParent(categoryId));
+        return "edit-product :: category";
     }
 
     @PostMapping("/save-product")

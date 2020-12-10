@@ -8,4 +8,5 @@ import java.util.List;
 public interface CategoryRepository  extends CrudRepository<Category, Long> {
     List<Category> findByParentId(Long id);
     List<Category> findByParentIsNull();
+    List<Category> findByParent(Category category);
 }
