@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 @RequiredArgsConstructor
 @Controller
@@ -23,8 +24,8 @@ public class RegistrationController {
     }
 
     @PostMapping("/register")
-    String createUser(@ModelAttribute User user, Model model) {
+    ModelAndView createUser(@ModelAttribute User user, Model model) {
         model.addAttribute("user", registerService.createUser(user));
-        return "login";
+        return new ModelAndView("redirect:/");
     }
 }
