@@ -2,8 +2,22 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>User info</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" />
+    <script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <script src="/webjars/jquery/3.5.1/jquery.js"></script>
+    <script src="/webjars/popper.js/1.16.0/popper.min.js"></script>
 </head>
 <body>
+<div class="jumbotron jumbotron-fluid text-center">
+    <h1>Welcome to our online store!</h1>
+</div>
+<nav class="navbar navbar-expand-sm bg-dark justify-content-lg-end">
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <button th:onclick="|window.location.href='@{/logout}'|">Logout</button>
+        </li>
+    </ul>
+</nav>
 <h1>User info</h1>
 <section id="profile">
     <table>

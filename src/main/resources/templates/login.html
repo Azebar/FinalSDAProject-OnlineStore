@@ -2,8 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <title>Login page</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css}" />
+    <script src="/webjars/bootstrap/4.5.3/js/bootstrap.min.js"></script>
+    <script src="/webjars/jquery/3.5.1/jquery.js"></script>
+    <script src="/webjars/popper.js/1.16.0/popper.min.js"></script>
 </head>
 <body>
+<div class="jumbotron jumbotron-fluid text-center">
+    <h1>Welcome to our online store!</h1>
+</div>
 <h1>Login page</h1>
 <form th:action="@{/login}" method="post">
     <label for="username">Username</label>:
