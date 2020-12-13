@@ -3,10 +3,10 @@ package ee.sda.finalprojectonlinestore.configurations;
 
 import ee.sda.finalprojectonlinestore.entities.User;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -57,5 +57,11 @@ public class OnlineStoreUserDetails implements UserDetails {
         return true;
     }
 
+    public void setUsername(String username) {
+        this.user.setUsername(username);
+    }
 
+    public void setPassword(String password) {
+        this.user.setPassword(password);
+    }
 }

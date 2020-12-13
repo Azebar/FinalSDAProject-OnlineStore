@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Edit my account data</title>
+</head>
+<body>
+<h1>Edit my account data:</h1>
+<form th:action="@{/user-panel/save}" th:object="${user}" method="post">
+    <input type="hidden" name="id" th:value="${user.id}"/>
+    <input type="hidden" name="password" th:value="${user.password}"/>
+    Username: <input type="text" name="username" th:value="${user.username}"/> <br />
+    First name: <input type="text" name="firstName" th:value="${user.firstName}"/> <br />
+    Last name: <input type="text" name="lastName" th:value="${user.lastName}"/> <br />
+    Address: <input type="text" name="address" th:value="${user.address}"/> <br />
+    <div>Please select your preferred contact method:</div>
+    <label for="preferredMessagingChannel">Email</label>
+    <input type="radio" id="preferredMessagingChannel" name="preferredMessagingChannel" value="by email">
+    <label for="preferredMessagingChannel1">Mail</label>
+    <input type="radio" id="preferredMessagingChannel1" name="preferredMessagingChannel" value="by mail"> <br/>
+    <br/>
+    <input type="submit" value="Save" />
+</form>
+<button th:onclick="|window.location.href='@{/user-panel/show-user/}'|">Cancel</button>
+</body>
+</html>

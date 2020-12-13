@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>User info</title>
+</head>
+<body>
+<h1>User info</h1>
+<section id="profile">
+    <table>
+        <tr>
+            <td>First name:</td>
+            <td th:text=${user.firstName}></td>
+        </tr>
+        <tr>
+            <td>Last name:</td>
+            <td th:text=${user.lastName}></td>
+        </tr>
+        <tr>
+            <td>Username/email:</td>
+            <td th:text=${user.username}></td>
+        </tr>
+        <tr>
+            <td>Address:</td>
+            <td th:text=${user.address}></td>
+        </tr>
+        <tr>
+            <td>Created:</td>
+            <td th:text=${user.created}></td>
+        </tr>
+        <tr>
+            <td>Preferred messaging channel:</td>
+            <td th:text=${user.preferredMessagingChannel}></td>
+        </tr>
+    </table>
+    <button th:onclick="|window.location.href='@{/user-panel/edit-user/}'|">Edit</button>
+    <button th:onclick="|window.location.href='@{/user-panel/change-password/}'|">Change password</button>
+</section>
+<button th:onclick="window.location.href = '/user-panel'">Back to user panel</button><br/><br/>
+
+</body>
+</html>
